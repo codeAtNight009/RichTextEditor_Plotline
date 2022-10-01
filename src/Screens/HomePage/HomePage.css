@@ -1,0 +1,27 @@
+.container{
+    max-width: 85vw;
+    margin:1.25vw auto 1.25vw auto;
+}
+.container h1 {
+    font-weight: 500;
+    font-size: 1.87vw;
+    line-height: 2.62vw;
+    color: #091E42;
+    opacity: 0.7;
+    text-shadow: 0px 0.625vw 2.50vw rgba(1, 0, 39, 0.25);
+}
+
+@media screen and (max-width:1400px) {
+    .container{
+        max-width: 85%;
+        margin:20px auto 20px auto;
+    }
+    .container h1 {
+        font-weight: 500;
+        font-size: 26px;
+        line-height:42px;
+        color: #091E42;
+        opacity: 0.7;
+        text-shadow: 0px 10px 40px rgba(1, 0, 39, 0.25);
+    }    
+}
