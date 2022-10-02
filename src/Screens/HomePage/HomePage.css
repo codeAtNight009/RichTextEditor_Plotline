@@ -11,6 +11,20 @@
     text-shadow: 0px 0.625vw 2.50vw rgba(1, 0, 39, 0.25);
 }
 
+#popup-tag{
+    position:absolute;
+    display:none;
+    background-color:#141414d4;
+    color:white;
+    padding:10px;
+    font-size:20px;
+    font-weight:bold;
+    cursor:pointer;
+    opacity: 1;
+    border-radius: 10px;
+    -webkit-filter: drop-shadow(0 1px 10px rgba(113,158,206,1));
+ }
+
 @media screen and (max-width:1400px) {
     .container{
         max-width: 85%;
