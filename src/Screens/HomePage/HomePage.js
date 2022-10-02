@@ -87,6 +87,29 @@ function HomePage() {
     setColor(color);
   }
 
+  function getSelected() {
+    if(window.getSelection) { return window.getSelection(); }
+    else if(document.getSelection) { return document.getSelection(); }
+    else {
+      var selection = document.selection && document.selection.createRange();
+      if(selection.text) { return selection.text; }
+      return false;
+    }
+  }
+
+  const handleSelection = (e) => {
+    var selection = getSelected();
+    console.log(e.clientY,e.clientX)
+    const popup = document.getElementById('popup-tag')
+    if (selection && selection != '') {
+        popup.style.display = 'block';
+        popup.style.top = e.clientY + 20 +  'px';
+        popup.style.left = e.clientX + 10 + 'px';
+    }else{
+      popup.style.display = 'none';
+    }
+  }
+
   return (
     <React.Fragment>
       <NavBar title={"Data"} logo={"plotLineLogo.svg"} />
@@ -122,9 +145,15 @@ function HomePage() {
              placeholder="Write your thoughts here..."
              spellCheck = {false}
              autoFocus
+             onMouseUp={handleSelection}
              onKeyDown={handleKeyDownEvent}
           />
-  
+          
+          <button id="popup-tag" onClick={(e) => {
+            CustomEditor.toggleHighLightMark(editor)
+            e.target.style.display = 'none';
+          }}>Highlight</button>
+          
           <SpeakerBox />
         
         </Slate>
@@ -132,5 +161,7 @@ function HomePage() {
     </React.Fragment>
   )
 }
+
+
 
 export default HomePage
