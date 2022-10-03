@@ -29,7 +29,7 @@ function HomePage() {
   const [showColorPicker, setShowColorPicker] = useState(false);
   const [color, setColor] = useState('#000');
 
-  const renderElement = useCallback(props =>  {
+  const renderElement = useCallback(props =>  { // renders block element in slate editor
     switch (props.element.type) {
       case 'numbered-list':
         return <NumberedList {...props} />
@@ -48,7 +48,7 @@ function HomePage() {
     }
   }, [])
 
-  const renderLeaf = useCallback(props => {
+  const renderLeaf = useCallback(props => { // renders inline element in slate editor
     return <Leaf {...props} />
   }, [])
   
@@ -87,7 +87,7 @@ function HomePage() {
     setColor(color);
   }
 
-  function getSelected() {
+  function getSelected() { // return the text that is selected by the user
     if(window.getSelection) { return window.getSelection(); }
     else if(document.getSelection) { return document.getSelection(); }
     else {
@@ -165,3 +165,4 @@ function HomePage() {
 
 
 export default HomePage
+
