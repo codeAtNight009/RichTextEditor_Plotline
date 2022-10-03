@@ -1,8 +1,10 @@
 import {Transforms,Editor,Text  } from 'slate';
 import { isImageUrl, insertImage} from './Utility_Functions';
 
+
+
 const CustomEditor = {
-    isBoldMarkActive(editor) {
+    isBoldMarkActive(editor) { // isBoldMarkActive checks if the selected text is already in bold or not and returns a true/false response
       const [match] = Editor.nodes(editor, {
         match: n => n.bold === true,
         universal: true,
@@ -29,6 +31,15 @@ const CustomEditor = {
       return !!match
     },
   
+    isHighLightMarkActive(editor) {
+      const [match] = Editor.nodes(editor, {
+        match: n => n.highlight === true,
+        universal: true,
+      })
+  
+      return !!match
+    },
+
     isCodeBlockActive(editor) {
       const [match] = Editor.nodes(editor, {
         match: n => n.type === 'code',
@@ -61,11 +72,11 @@ const CustomEditor = {
       return !!match
     },
   
-    toggleBoldMark(editor) {
+    toggleBoldMark(editor) { // toggles the bold state of selected text.
       const isActive = CustomEditor.isBoldMarkActive(editor)
       Transforms.setNodes(
         editor,
-        { bold: isActive ? null : true },
+        { bold: isActive ? null : true }, // isActive true means, text is already bold, so me make it normal
         { match: n => Text.isText(n), split: true }
       )
     },
@@ -92,6 +103,15 @@ const CustomEditor = {
       Transforms.setNodes(
         editor,
         { color: colorValue },
+        { match: n => Text.isText(n), split: true }
+      )
+    },
+  
+    toggleHighLightMark(editor) {
+      const isActive = CustomEditor.isHighLightMarkActive(editor)
+      Transforms.setNodes(
+        editor,
+        { highlight: isActive ? null : true },
         { match: n => Text.isText(n), split: true }
       )
     },
